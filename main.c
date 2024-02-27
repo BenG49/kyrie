@@ -16,7 +16,7 @@
 #pragma competitionControl(Competition)
 
 //Main competition background code...do not modify!
-// #include "Vex_Competition_Includes.c"
+#include "Vex_Competition_Includes.c"
 
 const float TRACK_WIDTH_FEET = 	13.25 / 12.0
 const float WHEEL_DIAMETER_FEET = 4.0 / 12.0;
@@ -166,7 +166,7 @@ task autonomous() {
 	motor[scorer] = 0;
 }
 
-task main() {
+task usercontrol() {
 	bool runIntake = false;
 
 	bool lastIntakeToggleButton = false;
@@ -177,7 +177,7 @@ task main() {
 		arcadeDrive(deadband(vexRT[Ch3], 10), deadband(vexRT[Ch1], 10));
 
 		// when button goes from false to true, toggle intake
-		if (!lastintakeToggleButton && vexRT[Btn8U]) {
+		if (!lastIntakeToggleButton && vexRT[Btn8U]) {
 			runIntake = !runIntake;
 		}
 
