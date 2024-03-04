@@ -80,8 +80,8 @@ float getAngleRad() {
 /*** DRIVE ***/
 
 void arcadeDrive(float drive, float turn) {
-	motor[leftFrontMotor]  = (drive + turn) * 0.9;
-	motor[leftBackMotor]  = (drive + turn) * 0.9;
+	motor[leftFrontMotor]  = (drive + turn) * 0.85;
+	motor[leftBackMotor]  = (drive + turn) * 0.85;
 
 	motor[rightFrontMotor] = drive - turn;
 	motor[rightBackMotor] = drive - turn;
@@ -160,13 +160,21 @@ void pre_auton() {
 task autonomous() {
 	pre_auton();
 
-	driveDist(4);
+	driveDist(3.75);
 
 	motor[intake] = 127;
 	motor[scorer] = 127;
 	wait(2);
 	motor[scorer] = 0;
 	motor[intake] = 0;
+
+	//driveDist(-2.0/12.0);
+
+	//if (isRedAlliance()) {
+	//	turnAngle(90);
+	//} else {
+	//	turnAngle(-90);
+	//}
 }
 
 task usercontrol() {
@@ -210,7 +218,7 @@ task usercontrol() {
 		}
 
 		if (!lastScorePrepButton && vexRT[Btn8D]) {
-			runScorerSeconds(2.0);
+			runScorerSeconds(1.5);
 		}
 
 		lastScorePrepButton = vexRT[Btn8D];
